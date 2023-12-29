@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Try to Get 700 Players Fan Club</title>
+    <title>Search - Try to Get 700 Players Archive</title>
     <style>
         body {
             font-family: 'Press Start 2P', cursive;
@@ -20,55 +20,20 @@
             padding: 10px;
         }
 
-        nav {
-            background-color: #1a1a1a;
-            padding: 10px;
-        }
-
-        nav a {
-            color: #f8f8f8;
-            text-decoration: none;
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
-            background-color: #333;
-        }
-
-        nav a:hover {
-            background-color: #4c4c4c;
-        }
-
-        section {
-            padding: 20px;
+        #search-form {
+            text-align: center;
             margin: 20px;
-            background-color: #2d2d2d;
-            border-radius: 10px;
         }
 
-        footer {
-            background-color: #1a1a1a;
-            color: #f8f8f8;
-            text-align: center;
+        #search-input {
             padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            font-size: 16px;
+            border: 1px solid #333;
+            border-radius: 5px;
         }
 
-        @media only screen and (max-width: 600px) {
-            /* Adjust styles for smaller screens */
-            header, nav, section, footer {
-                margin: 10px;
-            }
-        }
-
-        /* Styles for the new buttons */
-        #home-buttons {
-            text-align: center;
-        }
-
-        #home-buttons button {
-            font-family: 'Your Custom Font', sans-serif; /* Replace 'Your Custom Font' with the desired font name */
+        #search-button {
+            font-family: 'Press Start 2P', cursive;
             background-color: #4c4c4c;
             color: #f8f8f8;
             padding: 10px 20px;
@@ -80,8 +45,14 @@
             transition: background-color 0.3s ease;
         }
 
-        #home-buttons button:hover {
+        #search-button:hover {
             background-color: #333;
+        }
+
+        #search-results {
+            text-align: center;
+            margin-top: 20px;
+            color: #f8f8f8;
         }
     </style>
 
@@ -90,29 +61,42 @@
 <body>
 
     <header>
-        <h1>Try to Get 700 Players Fan Club</h1>
-        <p>Your ultimate source for news and updates about the game!</p>
+        <h1>Try to Get 700 Players Archive</h1>
+        <p>Work in progress</p>
     </header>
 
-    <nav>
-        <a href="#home">Home</a>
-    </nav>
+    <div id="search-form">
+        <form onsubmit="searchWebpages(event)">
+            <input type="text" id="search-input" name="q" placeholder="Search...">
+            <button type="submit" id="search-button">Search</button>
+        </form>
+    </div>
 
-    <section id="home">
-        <h2>Welcome to the Try to Get 700 Players Fan Club!</h2>
-        <p>Join us on the journey to reach 700 players in this exciting game.</p>
-        
-        <div id="home-buttons">
-            <a href="#about"><button>About the Game</button></a>
-            <a href="#players"><button>Meet the Players</button></a>
-            <a href="#updates"><button>Game Updates</button></a>
-            <a href="#contact"><button>Contact Us</button></a>
-        </div>
-    </section>
+    <div id="search-results"></div>
 
-    <footer>
-        <p>&copy; 2023 Try to Get 700 Players Fan Club. All rights reserved.</p>
-    </footer>
+    <script>
+        async function searchWebpages(event) {
+            event.preventDefault();
+            
+            const searchInput = document.getElementById('search-input').value;
+            const searchResults = document.getElementById('search-results');
+
+            // Replace the URLs with the actual URLs you want to search
+            const urlsToSearch = ['https://example.com/page1', 'https://example.com/page2'];
+
+            // Fetch content from webpages
+            const resultsPromises = urlsToSearch.map(async (url) => {
+                const response = await fetch(`${url}?q=${searchInput}`);
+                const content = await response.text();
+                return { url, content };
+            });
+
+            const results = await Promise.all(resultsPromises);
+
+            // Display results
+            searchResults.innerHTML = results.map(result => `<p>${result.url}: ${result.content}</p>`).join('');
+        }
+    </script>
 
 </body>
 </html>
