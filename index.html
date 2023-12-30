@@ -32,32 +32,26 @@
             border-radius: 5px;
         }
 
-        #search-button {
-            font-family: 'Press Start 2P', cursive;
-            background-color: #4c4c4c;
-            color: #f8f8f8;
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+      #oreo-button {
+        font-family: 'Press Start 2P', cursive;
+        background-color: #4c4c4c;
+        color: #f8f8f8;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-        #search-button:hover {
-            background-color: #333;
-        }
+      #oreo-button:hover {
+        background-color: #333;
+      }
 
         #search-results {
             text-align: center;
             margin-top: 20px;
             color: #f8f8f8;
-        }
-        #oreo-button {
-            /* Add your custom styles here */
-            background-color: #ff9900; /* Orange color as an example */
-            color: #000; /* Black text color as an example */
         }
     </style>
 
@@ -72,8 +66,14 @@
 
     <div id="search-form">
         <form onsubmit="searchWebpages(event)">
-        <button id="oreo-button" class="navigation-button" onclick="navigateTo('https://ttg700pwiki.github.io/oreo')">Oreo</button>
+            <button id="oreo-button" class="navigation-button" onclick="navigateTo('https://ttg700pwiki.github.io/players')">Oreo</button>
         </form>
     </div>
+
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
