@@ -40,6 +40,9 @@
             width: 50%; /* You can adjust the percentage as needed */
             height: auto;
         }
+                .hidden {
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 </head>
@@ -49,7 +52,7 @@
         <h1 class="white">Try to get 700 players archive</h1>
     </header>
     <p class="white">As of 31/12/2023</p>
-    <p class="gold">1st Caterblock - 70,967,191</p>
+    <p class="gold" id="clickToReveal">1st Caterblock - 70,967,191</p>
     <p class="silver">2nd GraveIsEpic - 45,675,581</p>
     <p class="bronze">3rd AnTvenomR - 13,988,245</p>
     <p class="white">4th CPgamer97 - 11,414,410</p>
@@ -59,10 +62,24 @@
     <p class="white">8th deprocater - 6,274,485</p>
     <p class="white">9th carloslatam - 5,970,699</p>
     <p class="white">10th - K1ngGh0stly 5,760,980</p>
-
+    <div id="hiddenImage" class="hidden">
+            <!-- Add the image you want to reveal here -->
+            <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/caterjumpscare.png?raw=true" alt="Jumpscare Image">
+    </div>
+    
     <p>The Kills Leaderboard was first introduced on unknown at this point</p>
     <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/oldleaderboard.png?raw=true" alt="First photo of " style="width: 50%;">
     <p>First photo currently (25 Nov 2020 - Fishtailbaker25)</p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const clickToReveal = document.getElementById('clickToReveal');
+            const hiddenImage = document.getElementById('hiddenImage');
 
+            clickToReveal.addEventListener('click', function() {
+                // Toggle the hidden class to reveal or hide the image
+                hiddenImage.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
