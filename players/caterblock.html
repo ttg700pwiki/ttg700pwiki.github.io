@@ -97,4 +97,20 @@
     </div>
 
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var userInput = '';
+
+        document.addEventListener('keydown', function (event) {
+            userInput += event.key.toLowerCase();
+
+            if (userInput.includes('cater')) {
+                alert('noob');
+
+                userInput = '';
+            }
+        });
+    });
+</script>
+
 </html>
