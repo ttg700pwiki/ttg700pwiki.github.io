@@ -20,38 +20,62 @@
             padding: 10px;
         }
 
-        #search-form {
+        #oreo-button {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #4c4c4c;
+            color: #f8f8f8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #oreo-button:hover {
+            background-color: #333;
+        }
+
+        #search-results {
+            text-align: center;
+            margin-top: 20px;
+            color: #f8f8f8;
+        }
+
+        #filter-form {
             text-align: center;
             margin: 20px;
         }
 
-        #search-input {
+        #filter-select {
             padding: 10px;
             font-size: 16px;
             border: 1px solid #333;
             border-radius: 5px;
         }
 
-      #oreo-button {
-        font-family: 'Press Start 2P', cursive;
-        background-color: #4c4c4c;
-        color: #f8f8f8;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      #oreo-button:hover {
-        background-color: #333;
-      }
-
-        #search-results {
-            text-align: center;
-            margin-top: 20px;
+        #filter-button {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #4c4c4c;
             color: #f8f8f8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #filter-button:hover {
+            background-color: #333;
+        }
+
+        .result-container {
+            display: block; /* Show all results by default */
+        }
+
+        .result-container.hidden {
+            display: none;
         }
     </style>
 
@@ -64,21 +88,50 @@
         <p>Work in progress</p>
     </header>
 
-    <div id="search-form">
-        <p>13th April 2021 - 277 players - leader unknown</p>
-        <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/smallraid1.jpg?raw=true" alt="Big raid 1 " style="width: 50%;">
-        <p>23rd January 2022 - 241 people - leader is possibly abi</p>
-        <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/bigraid1.jpg?raw=true" alt="Big raid 2 " style="width: 50%;">
-        <p>26th March 2022 - 177 people- leader unknown</p>
-        <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/bigraid2.jpg?raw=true" alt="Big raid 3 " style="width: 50%;">
-        <p>3rd January 2023 - 331 people - leader is probably rodriguhh</p>
-        <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/bigraid3.jpg?raw=true" alt="Big raid 4 " style="width: 50%;">
-        </form>
+    <div id="filter-form">
+        <label for="filter-select">Filter by Leader:</label>
+        <select id="filter-select">
+            <option value="">All Leaders</option>
+            <option value="unknown">Unknown</option>
+            <option value="abi">Abi</option>
+            <option value="rodriguhh">Rodriguhh</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button id="filter-button" onclick="filterResults()">Filter</button>
+    </div>
+
+    <div id="search-results">
+        <div class="result-container" data-category="unknown">
+            <p>13th April 2021 - 277 players - leader unknown</p>
+            <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/smallraid1.jpg?raw=true" alt="Big raid 1" style="width: 50%;">
+        </div>
+        <div class="result-container" data-category="abi">
+            <p>23rd January 2022 - 241 people - leader is possibly abi</p>
+            <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/bigraid1.jpg?raw=true" alt="Big raid 2" style="width: 50%;">
+        </div>
+        <div class="result-container" data-category="unknown">
+            <p>26th March 2022 - 177 people- leader unknown</p>
+            <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/bigraid2.jpg?raw=true" alt="Big raid 3" style="width: 50%;">
+        </div>
+        <div class="result-container" data-category="rodriguhh">
+            <p>3rd January 2023 - 331 people - leader is probably rodriguhh</p>
+            <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/bigraid3.jpg?raw=true" alt="Big raid 4" style="width: 50%;">
+        </div>
     </div>
 
     <script>
-        function navigateTo(url) {
-            window.location.href = url;
+        function filterResults() {
+            var selectedLeader = document.getElementById("filter-select").value.toLowerCase();
+            var resultContainers = document.querySelectorAll(".result-container");
+
+            resultContainers.forEach(function(container) {
+                var category = container.getAttribute("data-category").toLowerCase();
+                if (category === selectedLeader || selectedLeader === "") {
+                    container.classList.remove("hidden");
+                } else {
+                    container.classList.add("hidden");
+                }
+            });
         }
     </script>
 </body>
