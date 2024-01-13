@@ -53,6 +53,42 @@
             margin-top: 20px;
             color: #f8f8f8;
         }
+
+        #filter-form {
+            text-align: center;
+            margin: 20px;
+        }
+
+        #filter-select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        #filter-button {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #4c4c4c;
+            color: #f8f8f8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #filter-button:hover {
+            background-color: #333;
+        }
+
+        .result-container {
+            display: block; /* Show all results by default */
+        }
+
+        .result-container.hidden {
+            display: none;
+        
     </style>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
@@ -64,15 +100,35 @@
         <p>Work in progress</p>
     </header>
 
-    <div id="search-form">
-        <p>3rd August 2021 -50 players - organised by players</p>
-        <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/smallraid2.jpg?raw=true" alt="First Small Raid " style="width: 50%;">
-        </form>
+    <div id="filter-form">
+        <label for="filter-select">Filter by Leader:</label>
+        <select id="filter-select">
+            <option value="">All Leaders</option>
+            <option value="unknown">Unknown</option>
+            <option value="players">Players</option>
+        </select>
+        <button id="filter-button" onclick="filterResults()">Filter</button>
     </div>
 
-    <script>
-        function navigateTo(url) {
-            window.location.href = url;
+    <div id="search-form">
+        <div class="result-container" data-category="players">
+            <p>3rd August 2021 -50 players - organised by players</p>
+            <img src="https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/raids/smallraid2.jpg?raw=true" alt="First Small Raid " style="width: 50%;">
+        </div>
+    </div>
+
+        function filterResults() {
+            var selectedLeader = document.getElementById("filter-select").value.toLowerCase();
+            var resultContainers = document.querySelectorAll(".result-container");
+
+            resultContainers.forEach(function(container) {
+                var category = container.getAttribute("data-category").toLowerCase();
+                if (category === selectedLeader || selectedLeader === "") {
+                    container.classList.remove("hidden");
+                } else {
+                    container.classList.add("hidden");
+                }
+            });
         }
     </script>
 </body>
