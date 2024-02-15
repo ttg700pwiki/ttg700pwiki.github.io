@@ -9,8 +9,8 @@
             font-family: 'Press Start 2P', cursive;
             margin: 0;
             padding: 0;
-            background-color: #0d0d0d;
-            color: #f8f8f8;
+            background-color: #f8f8f8; /* Light mode background color */
+            color: #0d0d0d; /* Light mode text color */
         }
 
         header {
@@ -55,6 +55,12 @@
         #search-form {
             text-align: center;
         }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
     </style>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
@@ -64,6 +70,9 @@
     <header>
         <h1>Try to Get 700 Players Archive</h1>
         <p>Work in progress</p>
+        <!-- Dark Mode Switch -->
+        <label for="dark-mode-switch">Dark Mode:</label>
+        <input type="checkbox" id="dark-mode-switch">
     </header>
 
     <div id="search-form">
@@ -76,9 +85,34 @@
         <a href="https://ttg700pwiki.github.io/other">Other</a>
         </form>
     </div>
+
     <script>
-        function navigateTo(url) {
-            window.location.href = url;
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const body = document.body;
+            const darkModeSwitch = document.getElementById('dark-mode-switch');
+            const isDarkMode = darkModeSwitch.checked;
+            
+            // Toggle dark mode class
+            body.classList.toggle('dark-mode', isDarkMode);
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        // Event listener for dark mode switch
+        const darkModeSwitch = document.getElementById('dark-mode-switch');
+        darkModeSwitch.addEventListener('change', function() {
+            toggleDarkMode();
+        });
+
+        // Check localStorage for dark mode preference
+        const darkModePreference = localStorage.getItem('darkMode');
+        if (darkModePreference === 'true') {
+            // Set switch state to true if dark mode preference is stored
+            darkModeSwitch.checked = true;
+            // Apply dark mode
+            toggleDarkMode();
         }
     </script>
 </body>
