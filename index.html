@@ -5,69 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Try to Get 700 Players Archive</title>
     <style>
-        body {
-            font-family: 'VT323', monospace;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8; /* Light mode background color */
-            color: #0d0d0d; /* Light mode text color */
-        }
+body {
+    font-family: 'VT323', monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* Dark background */
+    color: #f0f0f0; /* Light text color */
+}
 
-        header {
-            background-color: #4c4c4c;
-            color: #f8f8f8;
-            text-align: center;
-            padding: 10px;
-        }
+header {
+    background-color: #333; /* Darker header background */
+    color: #f0f0f0; /* Light text color */
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
 
-        #search-form a {
-        display: block;
-        }
+#search-form {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-        #search-input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #333;
-            border-radius: 5px;
-        }
+#search-form a {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange content vertically */
+    justify-content: flex-end; /* Align text at the bottom */
+    width: calc(33.33% - 20px); /* Width for 3 boxes per row */
+    min-width: 200px; /* Set a minimum width to ensure text is readable */
+    height: 200px; /* Fixed height */
+    margin: 10px; /* Adjust margin for spacing */
+    text-decoration: none;
+    color: #f0f0f0; /* Light text color */
+    background-color: #333; /* Dark button background */
+    border-radius: 8px; /* Slightly rounded corners */
+    font-size: 14px; /* Adjust font size for better fit */
+    font-weight: bold;
+    position: relative; /* Position for potential images */
+    overflow: hidden; /* Ensure text and images do not overflow */
+    padding: 10px; /* Padding inside the box */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
 
-      #oreo-button {
-        font-family: 'Press Start 2P', cursive;
-        background-color: #4c4c4c;
-        color: #f8f8f8;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
+#search-form a::before {
+    content: ''; /* For potential images or background */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%; /* Cover 80% of the box height */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8; /* Slight transparency for the image */
+    z-index: -1; /* Place behind text */
+}
 
-      #oreo-button:hover {
-        background-color: #333;
-      }
+#players::before {
+    content: ''; /* Required for pseudo-elements to display */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://github.com/ttg700pwiki/ttg700pwiki.github.io/blob/main/iconpics/image%20(2)%20(1).png?raw=true');
+    background-size: cover; /* Adjust this property as needed */
+    background-position: center;
+}
 
-        #search-results {
-            text-align: center;
-            margin-top: 20px;
-            color: #f8f8f8;
-        }
-        #search-form {
-            text-align: center;
-        }
+#search-form a:hover {
+    background-color: #555; /* Slightly lighter dark color on hover */
+    color: #ffffff; /* Ensure text remains visible on hover */
+}
 
-        /* Dark Mode Styles */
-        .dark-mode {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-        }
-        #search-form .link-container {
-        display: flex;
-        flex-direction: column;
-    }
-    #search-form a {
-        margin: 10px 0;
-    }
+#search-input {
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #555; /* Darker border */
+    border-radius: 8px; /* Slightly rounded corners */
+    background-color: #333; /* Dark background for input */
+    color: #f0f0f0; /* Light text color */
+}
+
+#oreo-button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #333; /* Dark button background */
+    color: #f0f0f0; /* Light text color */
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+#oreo-button:hover {
+    background-color: #555; /* Slightly lighter dark color on hover */
+}
+
+#search-results {
+    text-align: center;
+    margin-top: 20px;
+    color: #f0f0f0; /* Light text color */
+}
+
+.dark-mode #search-form a {
+    color: #f0f0f0; /* Light text color in dark mode */
+    background-color: #333; /* Dark button background in dark mode */
+}
+
+.dark-mode #search-input {
+    border: 2px solid #555; /* Darker border in dark mode */
+    background-color: #333; /* Dark background for input in dark mode */
+    color: #f0f0f0; /* Light text color in dark mode */
+}
+
+.dark-mode #oreo-button {
+    background-color: #333; /* Dark button background in dark mode */
+}
+
+.dark-mode #oreo-button:hover {
+    background-color: #555; /* Slightly lighter dark color on hover in dark mode */
+}
+
     </style>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
@@ -84,7 +147,7 @@
 
     <div id="search-form">
         <form onsubmit="searchWebpages(event)">
-        <a href="https://ttg700pwiki.github.io/players">players</a>
+        <a href="https://ttg700pwiki.github.io/players" id="players">players</a>
         <a href="https://ttg700pwiki.github.io/leaderboard.html">leaderboard</a>
         <a href="https://ttg700pwiki.github.io/worldrecords.html">Records</a>
         <a href="https://ttg700pwiki.github.io/contributors">Contributors</a>
